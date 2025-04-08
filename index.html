@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Relaxation Space</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Peaceful Moments</h1>
+            <p>Your personal space for relaxation and mindfulness</p>
+            <div class="current-time" id="current-time">2025-04-08 17:08:33</div>
+        </header>
+        
+        <div class="mood-selector">
+            <h2>How are you feeling today?</h2>
+            <div class="mood-buttons">
+                <button class="mood" data-mood="calm"><i class="fas fa-water"></i> Calm</button>
+                <button class="mood" data-mood="focus"><i class="fas fa-bullseye"></i> Focus</button>
+                <button class="mood" data-mood="uplift"><i class="fas fa-sun"></i> Uplift</button>
+                <button class="mood" data-mood="meditate"><i class="fas fa-om"></i> Meditate</button>
+                <button class="mood" data-mood="cozy"><i class="fas fa-mug-hot"></i> Cozy</button>
+                <button class="mood" data-mood="night"><i class="fas fa-moon"></i> Night</button>
+            </div>
+        </div>
+        
+        <div class="current-feeling">
+            <h2>Your Emotional Journal</h2>
+            <div class="feeling-input">
+                <textarea id="feeling-text" placeholder="How are you feeling right now? Write it down..."></textarea>
+                <button id="save-feeling"><i class="fas fa-save"></i> Save</button>
+            </div>
+            <div class="feelings-history">
+                <h3>Previous Entries</h3>
+                <div id="feelings-list"></div>
+            </div>
+        </div>
+        
+        <div class="breathing-exercise">
+            <h2>Breathing Exercise</h2>
+            <div class="breathing-options">
+                <button class="breathing-type active" data-type="box">Box Breathing</button>
+                <button class="breathing-type" data-type="4-7-8">4-7-8 Technique</button>
+                <button class="breathing-type" data-type="deep">Deep Breathing</button>
+            </div>
+            <div class="breathing-circle">
+                <div class="circle-text">Breathe</div>
+            </div>
+            <p class="breathing-instruction">Click to begin</p>
+            <div class="breathing-counter">
+                <span id="session-count">0</span> complete sessions
+            </div>
+        </div>
+        
+        <div class="zen-garden">
+            <h2>Zen Garden</h2>
+            <div class="garden-container">
+                <canvas id="zen-garden-canvas"></canvas>
+                <div class="garden-tools">
+                    <button id="clear-garden"><i class="fas fa-broom"></i> Clear</button>
+                    <div class="color-options">
+                        <label for="sand-color">Sand Color:</label>
+                        <input type="color" id="sand-color" value="#f2d2a9">
+                    </div>
+                    <div class="brush-size">
+                        <label for="brush-size">Brush Size:</label>
+                        <input type="range" id="brush-size" min="5" max="50" value="15">
+                    </div>
+                    <select id="pattern-type">
+                        <option value="circle">Circle</option>
+                        <option value="square">Square</option>
+                        <option value="star">Star</option>
+                    </select>
+                </div>
+                <div class="garden-gallery">
+                    <button id="save-garden"><i class="fas fa-download"></i> Save Creation</button>
+                    <div id="saved-creations"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="relaxing-sounds">
+            <h2>Relaxing Sounds</h2>
+            <div class="youtube-container">
+                <div class="video-container" id="video-container">
+                    <!-- YouTube player will be embedded here -->
+                </div>
+                <button id="play-rain-sound" class="play-sound-btn">
+                    <i class="fas fa-play"></i> Play Rain Sounds
+                </button>
+            </div>
+        </div>
+        
+        <div class="gentle-games">
+            <h2>Mindful Mini-Games</h2>
+            <div class="games-container">
+                <div class="game" id="memory-game">
+                    <h3>Memory Match</h3>
+                    <p>Find matching pairs to train your focus</p>
+                    <button class="start-game" data-game="memory"><i class="fas fa-play"></i> Play</button>
+                </div>
+                <div class="game" id="puzzle-game">
+                    <h3>Peaceful Puzzle</h3>
+                    <p>Arrange the pieces to form a calming image</p>
+                    <button class="start-game" data-game="puzzle"><i class="fas fa-play"></i> Play</button>
+                </div>
+                <div class="game-area" id="game-area">
+                    <button id="close-game"><i class="fas fa-times"></i></button>
+                    <button id="fullscreen-game"><i class="fas fa-expand"></i></button>
+                    <div id="game-content"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quotes">
+            <h2>Mindful Thoughts</h2>
+            <div class="quote-display">
+                <p id="quote-text">"Breathe in peace, breathe out stress."</p>
+                <p id="quote-author">- Anonymous</p>
+            </div>
+            <button id="new-quote"><i class="fas fa-sync-alt"></i> New Quote</button>
+            <div class="quote-options">
+                <label>
+                    <input type="checkbox" id="auto-quote"> Auto-change quotes
+                </label>
+                <select id="quote-category">
+                    <option value="mindfulness">Mindfulness</option>
+                    <option value="peace">Peace</option>
+                    <option value="happiness">Happiness</option>
+                    <option value="nature">Nature</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="guided-meditation">
+            <h2>Guided Meditation</h2>
+            <div class="meditation-options">
+                <select id="meditation-length">
+                    <option value="short">3 Minutes</option>
+                    <option value="medium">5 Minutes</option>
+                    <option value="long">10 Minutes</option>
+                </select>
+                <select id="meditation-type">
+                    <option value="body-scan">Body Scan</option>
+                    <option value="loving-kindness">Loving Kindness</option>
+                    <option value="mindfulness">Mindfulness</option>
+                </select>
+                <button id="start-meditation"><i class="fas fa-play"></i> Begin</button>
+            </div>
+            <div class="meditation-progress">
+                <div class="progress-bar" id="meditation-progress-bar"></div>
+                <p id="meditation-status"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Take a moment for yourself today</p>
+            <div class="mood-tracker">
+                <p>Today's mood: <span id="current-mood">Not set</span></p>
+            </div>
+            <p class="copyright">Created with care for <span class="user-name">litance</span> on <span id="current-date">2025-04-08</span></p>
+        </div>
+    </footer>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>

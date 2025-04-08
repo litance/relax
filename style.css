@@ -1,0 +1,881 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #e8b4b8;
+    --secondary-color: #eee2dc;
+    --accent-color: #ac8daf;
+    --text-color: #5e4c5a;
+    --light-text: #786d75;
+    --bg-color: #fef8f8;
+    --box-shadow: 0 5px 15px rgba(152, 115, 122, 0.15);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 1s ease;
+    background-image: url('https://images.unsplash.com/photo-1558637845-c8b7ead71a3e?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(254, 248, 248, 0.85);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0;
+    animation: fadeIn 2s ease;
+    position: relative;
+}
+
+.current-time {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.mood-selector, 
+.breathing-exercise, 
+.zen-garden, 
+.relaxing-sounds, 
+.quotes,
+.current-feeling,
+.gentle-games,
+.guided-meditation {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.mood-selector::before,
+.breathing-exercise::before,
+.zen-garden::before,
+.relaxing-sounds::before,
+.quotes::before,
+.current-feeling::before,
+.gentle-games::before,
+.guided-meditation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+}
+
+.mood-selector:hover, 
+.breathing-exercise:hover, 
+.zen-garden:hover, 
+.relaxing-sounds:hover, 
+.quotes:hover,
+.current-feeling:hover,
+.gentle-games:hover,
+.guided-meditation:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(152, 115, 122, 0.2);
+}
+
+.mood-buttons, .breathing-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button:hover {
+    background-color: #9a7a9e;
+    transform: scale(1.05);
+}
+
+.mood {
+    background-color: var(--primary-color);
+}
+
+.mood:hover {
+    background-color: #d9a0a4;
+}
+
+button i {
+    font-size: 0.9em;
+}
+
+button.active {
+    background-color: var(--text-color);
+    box-shadow: 0 0 10px rgba(94, 76, 90, 0.3);
+}
+
+/* Current Feeling Section */
+.feeling-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#feeling-text {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #e5d6d9;
+    border-radius: 10px;
+    resize: none;
+    height: 100px;
+    font-family: inherit;
+    color: var(--text-color);
+}
+
+#save-feeling {
+    align-self: flex-end;
+}
+
+.feelings-history {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: rgba(239, 231, 234, 0.3);
+    border-radius: 10px;
+}
+
+.feeling-entry {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--primary-color);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.feeling-date {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    margin-bottom: 5px;
+}
+
+/* Breathing Exercise */
+.breathing-options {
+    margin-bottom: 20px;
+}
+
+.breathing-exercise {
+    text-align: center;
+}
+
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--primary-color), var(--accent-color));
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 4s ease-in-out, background 1s ease;
+    box-shadow: 0 0 30px rgba(172, 141, 175, 0.3);
+}
+
+.circle-text {
+    color: white;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.breathing-circle.inhale {
+    transform: scale(1.4);
+    background: radial-gradient(circle, #a8d8ea, #83c5be);
+}
+
+.breathing-circle.hold {
+    background: radial-gradient(circle, #a0c4ff, #bdb2ff);
+}
+
+.breathing-circle.exhale {
+    transform: scale(1);
+    background: radial-gradient(circle, var(--primary-color), var(--accent-color));
+}
+
+.breathing-instruction {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    margin-bottom: 15px;
+}
+
+.breathing-counter {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+#session-count {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+/* Zen Garden */
+.garden-container {
+    text-align: center;
+}
+
+#zen-garden-canvas {
+    width: 100%;
+    height: 300px;
+    background-color: #f2d2a9;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.garden-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+#clear-garden {
+    background-color: #e58e8e;
+}
+
+#clear-garden:hover {
+    background-color: #d47979;
+}
+
+.color-options, .brush-size {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#sand-color {
+    height: 43px;
+    width: 80px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#brush-size {
+    width: 100px;
+}
+
+#pattern-type {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e5d6d9;
+    background-color: white;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.garden-gallery {
+    margin-top: 20px;
+}
+
+#saved-creations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.saved-creation {
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.saved-creation:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-color);
+}
+
+/* YouTube Relaxing Sounds */
+.youtube-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+.play-sound-btn {
+    background-color: var(--primary-color);
+    font-size: 1.2rem;
+    padding: 15px 30px;
+}
+
+.play-sound-btn:hover {
+    background-color: #d9a0a4;
+}
+
+/* Gentle Games */
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+}
+
+.game {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 10px);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.game:hover {
+    transform: translateY(-5px);
+    background-color: #e8d7d4;
+}
+
+.game h3 {
+    color: var(--text-color);
+}
+
+.game p {
+    margin-bottom: 20px;
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.start-game {
+    background-color: var(--accent-color);
+}
+
+.game-area {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px; /* Increased height for games */
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.game-area.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+    padding: 40px;
+}
+
+#close-game,
+#fullscreen-game {
+    position: absolute;
+    padding: 8px;
+    font-size: 0.8rem;
+    z-index: 20;
+}
+
+#close-game {
+    top: 10px;
+    right: 10px;
+    background-color: #e58e8e;
+}
+
+#fullscreen-game {
+    top: 10px;
+    right: 50px;
+    background-color: var(--accent-color);
+}
+
+#game-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Quotes */
+.quote-display {
+    background-color: #fcf5f7;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.quote-display::before, .quote-display::after {
+    content: '"';
+    position: absolute;
+    font-size: 4rem;
+    color: rgba(172, 141, 175, 0.2);
+    font-family: Georgia, serif;
+}
+
+.quote-display::before {
+    top: 10px;
+    left: 20px;
+}
+
+.quote-display::after {
+    bottom: -20px;
+    right: 20px;
+    transform: rotate(180deg);
+}
+
+#quote-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-color);
+    text-align: center;
+    z-index: 1;
+}
+
+#quote-author {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    align-self: flex-end;
+    margin-right: 40px;
+}
+
+#new-quote {
+    background-color: var(--primary-color);
+    display: block;
+    margin: 0 auto 20px;
+}
+
+#new-quote:hover {
+    background-color: #d9a0a4;
+}
+
+.quote-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    color: var(--light-text);
+}
+
+#quote-category {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #e5d6d9;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Guided Meditation */
+.meditation-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+#meditation-length, #meditation-type {
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 1px solid #e5d6d9;
+    color: var(--text-color);
+    background-color: white;
+    cursor: pointer;
+}
+
+#start-meditation {
+    background-color: var(--accent-color);
+}
+
+.meditation-progress {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #e5d6d9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    transition: width 1s linear;
+}
+
+#meditation-status {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+/* Footer */
+footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 1px solid #f5e6e9;
+}
+
+.footer-content {
+    text-align: center;
+    color: var(--light-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.mood-tracker {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+#current-mood {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.user-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Theme Classes */
+body.calm-theme {
+    background-image: url('https://images.unsplash.com/photo-1550236520-7050f3582da0?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.calm-theme::before {
+    background-color: rgba(232, 244, 248, 0.85);
+}
+
+body.focus-theme {
+    background-image: url('https://images.unsplash.com/photo-1624808274272-24d3e0537a38?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.focus-theme::before {
+    background-color: rgba(238, 242, 247, 0.85);
+}
+
+body.uplift-theme {
+    background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.uplift-theme::before {
+    background-color: rgba(252, 240, 227, 0.85);
+}
+
+body.meditate-theme {
+    background-image: url('https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.meditate-theme::before {
+    background-color: rgba(240, 230, 246, 0.85);
+}
+
+body.cozy-theme {
+    background-image: url('https://images.unsplash.com/photo-1543791959-12b3f543282a?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.cozy-theme::before {
+    background-color: rgba(253, 240, 213, 0.85);
+}
+
+body.night-theme {
+    background-image: url('https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=1000&auto=format&fit=crop');
+}
+
+body.night-theme::before {
+    background-color: rgba(30, 40, 60, 0.85);
+}
+
+body.night-theme {
+    color: #e0e0e0;
+}
+
+body.night-theme h2,
+body.night-theme h3,
+body.night-theme .mood-selector, 
+body.night-theme .breathing-exercise, 
+body.night-theme .zen-garden, 
+body.night-theme .relaxing-sounds, 
+body.night-theme .quotes,
+body.night-theme .current-feeling,
+body.night-theme .gentle-games,
+body.night-theme .guided-meditation {
+    background-color: #2c3e50;
+    color: #e0e0e0;
+}
+
+body.night-theme .quote-display {
+    background-color: #34495e;
+    color: #e0e0e0;
+}
+
+body.night-theme #quote-text {
+    color: #e0e0e0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes notification {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { transform: translateY(0); opacity: 1; }
+    90% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: notification 3s forwards;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .mood-buttons, .breathing-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .game {
+        width: 100%;
+    }
+    
+    .garden-tools {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Add this to your existing CSS file for the auto-expanded game functionality */
+
+.game-area {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px; /* Normal height */
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.game-area.expanded {
+    height: 600px; /* Expanded height - automatically shown when game starts */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.game-area.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    overflow: auto;
+    flex: 1;
+}
+
+#close-game,
+#fullscreen-game {
+    position: absolute;
+    padding: 8px;
+    font-size: 0.8rem;
+    z-index: 20;
+}
+
+#close-game {
+    top: 10px;
+    right: 10px;
+    background-color: #e58e8e;
+}
+
+#fullscreen-game {
+    top: 10px;
+    right: 50px;
+    background-color: var(--accent-color);
+}
